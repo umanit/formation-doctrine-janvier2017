@@ -1,6 +1,11 @@
 <?php
 
-// Code here
+require_once '../bootstrap.php';
+
+$postId = htmlspecialchars($_GET['post_id']);
+// $post = $entityManager->getRepository('ImieBook\Entity\Post')->find($postId);
+// $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneBy(['id' => $postId]);
+$post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneById($postId);
 
 ?>
 
@@ -64,12 +69,11 @@
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <a href="#" class="pull-right">Link</a>
-                                            <h4>Title</h4>
-                                            Date
+                                            <h4><?php print $post->getSubject(); ?></h4>
+                                            <?php print $post->getDate()->format('d/m/Y H:i:s'); ?>
                                         </div>
                                         <div class="panel-body">
-                                            Content.
+                                            <?php print $post->getMessage(); ?>
                                         </div>
                                     </div>
                                 </div>

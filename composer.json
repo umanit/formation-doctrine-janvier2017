@@ -1,0 +1,17 @@
+{
+    "name": "aanceau/doctrine",
+    "authors": [
+        {
+            "name": "Peekmo",
+            "email": "axel.anceau@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "ImieBook\\": "src/"
+        }
+    }
+}

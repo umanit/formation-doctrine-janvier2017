@@ -10,7 +10,7 @@
         "doctrine/orm": "^2.5"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "ImieBook\\": "src/"
         }
     }

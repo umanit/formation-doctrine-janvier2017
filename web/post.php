@@ -2,6 +2,7 @@
 
 require_once '../bootstrap.php';
 // Code here
+new \ImieBook\Entity\User();
 
 ?>
 

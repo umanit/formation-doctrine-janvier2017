@@ -2,6 +2,19 @@
 
 require_once '../bootstrap.php';
 
+use ImieBook\Entity\Post;
+
+// vérification que le formulaire de création de post a été soumis
+if (isset($_POST['post'])) {
+    $post = new Post();
+    $post->setSubject(htmlspecialchars($_POST['title']));
+    $post->setMessage(htmlspecialchars($_POST['message']));
+    $post->setDate(new \DateTime());
+
+    $entityManager->persist($post);
+    $entityManager->flush($post);
+}
+
 // $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findAll();
 $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findBy([], ['date' => 'DESC']);
 
@@ -41,7 +54,7 @@ $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findBy([], ['dat
                             <a href="/" class="navbar-brand logo">b</a>
                         </div>
                         <nav class="collapse navbar-collapse" role="navigation">
-                            <form class="navbar-form navbar-left" action="post.php">
+                            <form  class="navbar-form navbar-left" action="post.php">
                                 <div class="input-group input-group-sm" style="max-width:360px;">
                                     <input type="text" class="form-control" placeholder="Search" name="search-word" id="srch-term">
                                     <div class="input-group-btn">
@@ -67,7 +80,7 @@ $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findBy([], ['dat
                                 <!-- main col left -->
                                 <div class="col-sm-5">
                                     <div class="well">
-                                        <form class="form-horizontal" role="form">
+                                        <form method="POST" class="form-horizontal" role="form" action="post.php">
                                             <h4>What's New</h4>
                                             <div class="form-group" style="padding:14px;">
                                                 <input type="text" class="form-control" name="title" placeholder="Titre"/>

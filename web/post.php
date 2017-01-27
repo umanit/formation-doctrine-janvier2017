@@ -15,8 +15,15 @@ if (isset($_POST['post'])) {
     $entityManager->flush($post);
 }
 
-// $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findAll();
-$posts = $entityManager->getRepository('ImieBook\Entity\Post')->findBy([], ['date' => 'DESC']);
+if (isset($_GET['search-word'])) {
+    $posts = $entityManager
+        ->getRepository('ImieBook\Entity\Post')
+        ->search($_GET['search-word'])
+    ;
+} else {
+    // $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findAll();
+    $posts = $entityManager->getRepository('ImieBook\Entity\Post')->findBy([], ['date' => 'DESC']);
+}
 
 ?>
 

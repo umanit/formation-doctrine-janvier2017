@@ -3,7 +3,7 @@
 namespace ImieBook\Entity;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="ImieBook\Repository\PostRepository")
  * @Table(name="post")
  */
 class Post

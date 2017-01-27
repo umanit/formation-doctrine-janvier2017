@@ -2,10 +2,21 @@
 
 require_once '../bootstrap.php';
 
+use ImieBook\Entity\Comment;
+
 $postId = htmlspecialchars($_GET['post_id']);
 // $post = $entityManager->getRepository('ImieBook\Entity\Post')->find($postId);
 // $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneBy(['id' => $postId]);
 $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneById($postId);
+
+if (isset($_POST['comment'])) {
+    $comment = new Comment();
+    $comment->setMessage(htmlspecialchars($_POST['message']));
+    $comment->setDate(new \DateTime());
+
+    $entityManager->persist($comment);
+    $entityManager->flush($comment);
+}
 
 ?>
 
@@ -113,7 +124,7 @@ $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneById($post
 
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="well">
-                                        <form class="form-horizontal" role="form">
+                                        <form class="form-horizontal" role="form" method="POST" action="comment.php?post_id=<?php print $post->getId(); ?>">
                                             <h4>Commenter</h4>
                                             <div class="form-group" style="padding:14px;">
                                                 <textarea class="form-control" name="message" placeholder="Message"></textarea>

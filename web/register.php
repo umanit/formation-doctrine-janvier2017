@@ -1,6 +1,21 @@
 <?php
 
-// Code here
+require_once '../bootstrap.php';
+
+use ImieBook\Entity\User;
+
+if (isset($_POST['register'])) {
+    $user = new User();
+    $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
+    $user->setLastname($_POST['lastname']);
+    $user->setFirstname($_POST['firstname']);
+    $user->setBirthDate(new \DateTime($_POST['birthDate']));
+    $user->setDescription($_POST['description']);
+
+    $entityManager->persist($user);
+    $entityManager->flush($user);
+}
 
 ?>
 
@@ -76,7 +91,7 @@
                                                 <input class="form-control" type="text" name="lastname" placeholder="lastname" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="birthDate" placeholder="birthDate" />
+                                                <input class="form-control" type="date" name="birthDate" placeholder="birthDate" />
                                             </div>
                                             <div class="form-group">
                                                 <textarea class="form-control" name="description" placeholder="description"></textarea>

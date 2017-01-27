@@ -8,6 +8,7 @@ $post = $entityManager
     ->find($_GET['post_id'])
 ;
 
+// Vérifie que le bouton a été cliqué
 if (isset($_POST['edit'])) {
     $post->setSubject($_POST['subject']);
     $post->setMessage($_POST['message']);

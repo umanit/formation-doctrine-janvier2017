@@ -105,6 +105,7 @@ if (isset($_GET['search-word'])) {
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <a href="comment.php?post_id=<?php print $post->getId(); ?>" class="pull-right">Link</a>
+                                            <a href="edit_post.php?post_id=<?php print $post->getId(); ?>" class="pull-right">Éditer</a>
                                             <h4><?php print $post->getSubject(); ?></h4>
                                             <?php print $post->getDate()->format('d/m/Y H:i:s'); ?>
                                         </div>

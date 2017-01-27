@@ -18,6 +18,9 @@ if (isset($_POST['comment'])) {
     $entityManager->flush($comment);
 }
 
+// Récupération de tous les commentaires
+$comments = $entityManager->getRepository('ImieBook\Entity\Comment')->findBy([], ['date' => 'ASC']);
+
 ?>
 
 
@@ -89,38 +92,16 @@ if (isset($_POST['comment'])) {
                                     </div>
                                 </div>
 
+                                <?php foreach ($comments as $comment): ?>
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-                                            Date<br/>
-                                            Comment.
+                                            <?php print $comment->getDate()->format('d/m/Y H:i:s'); ?><br/>
+                                            <?php print $comment->getMessage(); ?>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-push-2 col-sm-8">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            Date<br/>
-                                            Comment.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-push-2 col-sm-8">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            Date<br/>
-                                            Comment.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-push-2 col-sm-8">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            Date<br/>
-                                            Comment.
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
 
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="well">

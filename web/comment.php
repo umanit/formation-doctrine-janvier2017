@@ -14,6 +14,7 @@ if (isset($_POST['comment'])) {
     $comment->setMessage(htmlspecialchars($_POST['message']));
     $comment->setDate(new \DateTime());
     $comment->setAuthor($_SESSION['user']);
+    $comment->setPost($post);
 
     $entityManager->persist($comment);
     $entityManager->flush($comment);

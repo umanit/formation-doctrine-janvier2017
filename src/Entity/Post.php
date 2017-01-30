@@ -137,4 +137,53 @@ class Post
         return $this;
     }
 
+
+    /**
+     * Get the value of Author
+     *
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set the value of Author
+     *
+     * @param mixed $author
+     *
+     * @return self
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Comments
+     *
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set the value of Comments
+     *
+     * @param mixed $comments
+     *
+     * @return self
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
 }

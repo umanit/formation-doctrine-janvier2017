@@ -13,6 +13,7 @@ if (isset($_POST['comment'])) {
     $comment = new Comment();
     $comment->setMessage(htmlspecialchars($_POST['message']));
     $comment->setDate(new \DateTime());
+    $comment->setAuthor($_SESSION['user']);
 
     $entityManager->persist($comment);
     $entityManager->flush($comment);

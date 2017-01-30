@@ -10,6 +10,7 @@ if (isset($_POST['post'])) {
     $post->setSubject(htmlspecialchars($_POST['title']));
     $post->setMessage(htmlspecialchars($_POST['message']));
     $post->setDate(new \DateTime());
+    $post->setAuthor($_SESSION['user']);
 
     $entityManager->persist($post);
     $entityManager->flush($post);

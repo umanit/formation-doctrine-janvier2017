@@ -37,7 +37,7 @@ class Post
     private $author;
 
     /**
-     * @OneToMany(targetEntity="ImieBook\Entity\Comment", mappedBy="post")
+     * @OneToMany(targetEntity="ImieBook\Entity\Comment", mappedBy="post", cascade={"remove"})
      */
     private $comments;
 

@@ -4,6 +4,16 @@ require_once '../bootstrap.php';
 
 use ImieBook\Entity\Post;
 
+if (!empty($_GET['delete'])) {
+    $postToDelete = $entityManager
+        ->getRepository('ImieBook\Entity\Post')
+        ->find($_GET['delete'])
+    ;
+
+    $entityManager->remove($postToDelete);
+    $entityManager->flush($postToDelete);
+}
+
 // vérification que le formulaire de création de post a été soumis
 if (isset($_POST['post'])) {
     $post = new Post();
@@ -107,6 +117,7 @@ if (isset($_GET['search-word'])) {
                                         <div class="panel-heading">
                                             <a href="comment.php?post_id=<?php print $post->getId(); ?>" class="pull-right">Link</a>
                                             <a href="edit_post.php?post_id=<?php print $post->getId(); ?>" class="pull-right">Éditer</a>
+                                            <a href="post.php?delete=<?php print $post->getId(); ?>">Supprimer</a>
                                             <h4><?php print $post->getSubject(); ?></h4>
                                             <?php print $post->getDate()->format('d/m/Y H:i:s'); ?>
                                         </div>

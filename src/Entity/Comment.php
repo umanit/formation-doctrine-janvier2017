@@ -33,7 +33,7 @@ class Comment
 
     /**
      * @ManyToOne(targetEntity="ImieBook\Entity\Post", inversedBy="comments")
-     * @JoinColumn(name="post_id", referencedColumnName="id")
+     * @JoinColumn(name="post_id", referencedColumnName="id", onDelete="cascade")
      */
     private $post;
 

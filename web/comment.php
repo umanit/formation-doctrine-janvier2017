@@ -9,6 +9,17 @@ $postId = htmlspecialchars($_GET['post_id']);
 // $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneBy(['id' => $postId]);
 $post = $entityManager->getRepository('ImieBook\Entity\Post')->findOneById($postId);
 
+// Suppression du commentaire dont l'ID est passé en paramètre
+if (!empty($_GET['delete'])) {
+    $commentToDelete = $entityManager
+        ->getRepository('ImieBook\Entity\Comment')
+        ->find($_GET['delete'])
+    ;
+
+    $entityManager->remove($commentToDelete);
+    $entityManager->flush($commentToDelete);
+}
+
 if (isset($_POST['comment'])) {
     $comment = new Comment();
     $comment->setMessage(htmlspecialchars($_POST['message']));
@@ -106,6 +117,7 @@ $comments = $entityManager
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
+                                            <a href="comment.php?post_id=<?php print $post->getId(); ?>&delete=<?php print $comment->getId(); ?>">Supprimer</a>
                                             <?php print $comment->getDate()->format('d/m/Y H:i:s'); ?><br/>
                                             <?php print $comment->getMessage(); ?>
                                         </div>

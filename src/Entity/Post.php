@@ -37,6 +37,11 @@ class Post
     private $author;
 
     /**
+     * @OneToMany(targetEntity="ImieBook\Entity\Comment", mappedBy="post")
+     */
+    private $comments;
+
+    /**
      * Get the value of Id
      *
      * @return mixed

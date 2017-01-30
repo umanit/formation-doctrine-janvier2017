@@ -32,6 +32,12 @@ class Comment
     private $author;
 
     /**
+     * @ManyToOne(targetEntity="ImieBook\Entity\Post", inversedBy="comments")
+     * @JoinColumn(name="post_id", referencedColumnName="id")
+     */
+    private $post;
+
+    /**
      * Get the value of Id
      *
      * @return mixed

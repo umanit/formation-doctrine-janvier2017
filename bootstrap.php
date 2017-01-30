@@ -20,3 +20,8 @@ $dbParams = array(
 
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
 $entityManager = EntityManager::create($dbParams, $config);
+
+if (isset($_SESSION['user'])) {
+    // Dit à doctrine d'aller récupérer l'objet en session
+    $_SESSION['user'] = $entityManager->merge($_SESSION['user']);
+}

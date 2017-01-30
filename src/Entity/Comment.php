@@ -26,6 +26,12 @@ class Comment
     private $date;
 
     /**
+     * @ManyToOne(targetEntity="ImieBook\Entity\User")
+     * @JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
      * Get the value of Id
      *
      * @return mixed

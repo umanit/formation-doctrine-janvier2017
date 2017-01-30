@@ -21,7 +21,15 @@ if (isset($_POST['comment'])) {
 }
 
 // Récupération de tous les commentaires
-$comments = $entityManager->getRepository('ImieBook\Entity\Comment')->findBy([], ['date' => 'ASC']);
+$comments = $entityManager
+    ->getRepository('ImieBook\Entity\Comment')
+    ->findBy(['post' => $post], ['date' => 'ASC'])
+;
+
+$comments = $entityManager
+    ->getRepository('ImieBook\Entity\Comment')
+    ->getAllByPost($post)
+;
 
 ?>
 
@@ -94,7 +102,7 @@ $comments = $entityManager->getRepository('ImieBook\Entity\Comment')->findBy([],
                                     </div>
                                 </div>
 
-                                <?php foreach ($comments as $comment): ?>
+                                <?php foreach ($post->getComments() as $comment): ?>
                                 <div class="col-sm-push-2 col-sm-8">
                                     <div class="panel panel-default">
                                         <div class="panel-body">

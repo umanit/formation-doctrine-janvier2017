@@ -3,7 +3,7 @@
 namespace ImieBook\Entity;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="ImieBook\Repository\CommentRepository")
  * @Table(name="comment")
  */
 class Comment

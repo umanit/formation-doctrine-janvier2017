@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+session_start();
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;

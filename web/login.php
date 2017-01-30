@@ -1,6 +1,19 @@
 <?php
 
-// code here
+require_once '../bootstrap.php';
+
+if (isset($_POST['login'])) {
+    $user = $entityManager
+        ->getRepository('ImieBook\Entity\User')
+        // ->findOneBy([
+        //     'email' => $_POST['username'],
+        //     'password' => $_POST['password']
+        // ])
+        ->getUserByCredentials($_POST['username'], $_POST['password'])
+    ;
+
+    $_SESSION['user'] = $user;
+}
 
 ?>
 
